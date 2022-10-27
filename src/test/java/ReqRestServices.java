@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.Test;
 
 public class ReqRestServices {
-    String date = "27/05/1999";
     @Test
+     String date = "27/05/1999";
     public void birthdayDate(){
-        System.out.printf("Mi fecha de nacimiento es: "+ date);
+        System.out.printf("Naci el: "+ date);
     }
 }
