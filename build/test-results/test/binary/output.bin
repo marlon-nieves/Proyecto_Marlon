@@ -1,5 +1,5 @@
 Request method:	PUT
-,Request URI:	https://regres.in/api/users/7
+,Request URI:	https://reqres.in/api/users/7
 Proxy:			<none>
 Request params:	<none>
 Query params:	<none>
@@ -10,19 +10,29 @@
 Cookies:		<none>
 Multiparts:		<none>
 Body:
-"name": "morpheus",
-"job": "zion resident"
+{
+    "name": "JOSE ESAU LOPEZ",
+    "job": "QA Automation"
 }
-HTTP/1.0 403 Forbidden
-Cache-Control: no-cache
-Connection: close
-Content-Type: text/html
+HTTP/1.1 200 OK
+%Date: Sun, 30 Oct 2022 20:20:50 GMT
+/Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: Express
+ Access-Control-Allow-Origin: *
+*Etag: W/"57-C1zoO8l/2XhJ1T8RdFdxezS04B4"
+Via: 1.1 vegur
+CF-Cache-Status: DYNAMIC
+þReport-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=zw0lasX%2B3rU9xReTvKw9gPUG2V6NUIntLlkNICfSoDCFQN2MVE8yapHEPdPmIh9%2Bovxw1p9wOx%2BF%2FbvIuSimQxyaxOxV3wrqE3nM0IjA1iFnFWcGwpYqBSoQOg%3D%3D"}],"group":"cf-nel","max_age":604800}
+CNEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+Vary: Accept-Encoding
+Server: cloudflare
+CF-RAY: 7626da973b8402a4-MIA
+Content-Encoding: gzip
 
-<html>
-	  <body>
-    <h1>403 Forbidden</h1>
-
-+Request forbidden by administrative rules.
-
-  </body>
-	</html>
+{
+    "name": "JOSE ESAU LOPEZ",
+    "job": "QA Automation",
+,    "updatedAt": "2022-10-30T20:20:50.630Z"
+}

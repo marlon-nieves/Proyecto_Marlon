@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestCrudApis2" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-10-30T20:20:48" hostname="LAPTOP-A94KIJTU" time="4.737">
+  <properties/>
+  <testcase name="PutUpdateUnknown()" classname="TestCrudApis2" time="4.737"/>
+  <system-out><![CDATA[Request method:	PUT
+Request URI:	https://reqres.in/api/users/7
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+    "name": "JOSE ESAU LOPEZ",
+    "job": "QA Automation"
+}
+HTTP/1.1 200 OK
+Date: Sun, 30 Oct 2022 20:20:50 GMT
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Etag: W/"57-C1zoO8l/2XhJ1T8RdFdxezS04B4"
+Via: 1.1 vegur
+CF-Cache-Status: DYNAMIC
+Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=zw0lasX%2B3rU9xReTvKw9gPUG2V6NUIntLlkNICfSoDCFQN2MVE8yapHEPdPmIh9%2Bovxw1p9wOx%2BF%2FbvIuSimQxyaxOxV3wrqE3nM0IjA1iFnFWcGwpYqBSoQOg%3D%3D"}],"group":"cf-nel","max_age":604800}
+NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+Vary: Accept-Encoding
+Server: cloudflare
+CF-RAY: 7626da973b8402a4-MIA
+Content-Encoding: gzip
+
+{
+    "name": "JOSE ESAU LOPEZ",
+    "job": "QA Automation",
+    "updatedAt": "2022-10-30T20:20:50.630Z"
+}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
