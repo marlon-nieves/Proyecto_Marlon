@@ -3,40 +3,55 @@ import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 public class TestCrudApis {
-    @Test
-    public void getTest(){
-        RestAssured.when().get("https://regres.in/api/unknown").then().log().all();
+    @BeforeEach
+    public void setup(){
+        RestAssured.baseURI="https://reqres.in";
+        RestAssured.basePath="/api";
+        RestAssured.filters(new RequestLoggingFilter(),new ResponseLoggingFilter());
+        RestAssured.requestSpecification = new RequestSpecBuilder().setContentType(ContentType.JSON).build();
     }
     @Test
-    public void postTest(){
-        String response = RestAssured
-                .given().log().all()
-                .contentType(ContentType.JSON)
-                .body("{\n"+
-                        "\"email\": \"sydney@fife\""+
+    public void TestPostLogin(){
+        given()
+                .body("{\n" +
+                        "    \"email\": \"eve.holt@reqres.in\",\n" +
+                        "    \"password\": \"pistol\"\n" +
                         "}")
-                .post("https://regres.in/api/register")
-                .then().log().all()
-                .extract().asString();
-        System.out.println("La respuesta es:\n" + response);
+                .post("login")
+                .then().statusCode(HttpStatus.SC_OK);
     }
     @Test
-    public void deleteTest(){
-        RestAssured.when().delete("https://regres.in/api/user/2").then().log().all();
+    public void TestGet(){
+        RestAssured.when().get("https://reqres.in/api/unknown").
+                then()
+                .body("page",equalTo(1));
     }
     @Test
-    public void putTest(){
-        RestAssured
-                .given()
+    public void TestPutUpdate(){
+        given()
                 .log().all()
-                .contentType(ContentType.JSON)
-                .body("\n"+
-                        "    \"name\": \"morpheus\",\n" +
-                        "    \"job\": \"zion resident\"\n"+
+                .body("{\n" +
+                        "    \"name\": \"Wilber Perez\",\n" +
+                        "    \"job\": \"QA Automation\"\n" +
                         "}")
-                .put("https://regres.in/api/users/7")
-                .then()
-                .log().all()
-                .extract().asString();
+                .put("https://reqres.in/api/users/7");
     }
+    @Test
+    public void TestDelete(){
+        RestAssured.when().delete("https://reqres.in/api/users/2");
+    }
+    @Test
+    public void patch(){
+        String nameUpdate = given().
+                when()
+                .body("{\n" +
+                        "    \"name\": \"Andres\",\n" +
+                        "    \"job\": \"zion resident\"\n" +
+                        "}")
+                .patch("user/2").then().statusCode(HttpStatus.SC_OK)
+                .extract().jsonPath().get("name");
+        assertThat(nameUpdate,equalTo("Andres"));
+
+    }
+
 }
