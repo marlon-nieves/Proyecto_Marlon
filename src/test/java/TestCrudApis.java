@@ -1,42 +1,63 @@
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
+import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.*;
 
 public class TestCrudApis {
-    @Test
-    public void getTest(){
-        RestAssured.when().get("https://regres.in/api/unknown").then().log().all();
+    @BeforeEach
+    public void setup(){
+        RestAssured.baseURI="https://reqres.in";
+        RestAssured.basePath="/api";
+        RestAssured.filters(new RequestLoggingFilter(),new ResponseLoggingFilter());
+        RestAssured.requestSpecification = new RequestSpecBuilder().setContentType(ContentType.JSON).build();
     }
     @Test
-    public void postTest(){
-        String response = RestAssured
-                .given().log().all()
-                .contentType(ContentType.JSON)
-                .body("{\n"+
-                        "\"email\": \"sydney@fife\""+
+    public void PostLoginUnknown(){
+        given()
+                .body("{\n" +
+                        "    \"email\": \"eve.holt@reqres.in\",\n" +
+                        "    \"password\": \"pistol\"\n" +
                         "}")
-                .post("https://regres.in/api/register")
-                .then().log().all()
-                .extract().asString();
-        System.out.println("La respuesta es:\n" + response);
+                .post("login")
+                .then().statusCode(HttpStatus.SC_OK);
     }
     @Test
-    public void deleteTest(){
-        RestAssured.when().delete("https://regres.in/api/user/2").then().log().all();
+    public void GetListUnknown(){
+        RestAssured.when().get("https://reqres.in/api/unknown").
+                then()
+                .body("page",equalTo(1))
+                .body("token",notNullValue());
     }
     @Test
-    public void putTest(){
-        RestAssured
-                .given()
+    public void PutUpdateUnknown(){
+        given()
                 .log().all()
-                .contentType(ContentType.JSON)
-                .body("\n"+
-                        "    \"name\": \"morpheus\",\n" +
-                        "    \"job\": \"zion resident\"\n"+
+                .body("{\n" +
+                        "    \"name\": \"Diego Valencia\",\n" +
+                        "    \"job\": \"QA Automation\"\n" +
                         "}")
-                .put("https://regres.in/api/users/7")
-                .then()
-                .log().all()
-                .extract().asString();
+                .put("https://reqres.in/api/users/7");
+    }
+    @Test
+    public void DeleteUnknown(){
+        RestAssured.when().delete("https://reqres.in/api/users/2");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
